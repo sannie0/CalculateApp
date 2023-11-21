@@ -1,0 +1,85 @@
+﻿<Window x:Class="calculate_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:calculate_"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="350"
+        d:DataContext="{d:DesignInstance {x:Type local:MainViewModel}}">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="Margin" Value="10"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="TextAlignment" Value="Right"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="NumberButton">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Background" Value="Silver"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Display -->
+        <TextBox Text="{Binding Result}" Grid.Row="0"/>
+
+        <TextBox Text="{Binding InputTxt, ValidatesOnDataErrors=True}" Grid.Row="1"></TextBox>
+
+        <Grid Grid.Row="3" ShowGridLines="False">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="(" Content="(" Grid.Row ="0" Grid.Column="0"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter=")" Content=")" Grid.Row ="0" Grid.Column="1"/>
+            <Button Command ="{Binding CleanCommand}" Content="delete" Grid.Row ="0" Grid.Column="2"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="/" Content="/" Grid.Row ="0" Grid.Column="3"/>
+
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="7" Content="7" Grid.Row ="1" Grid.Column="0" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="8" Content="8" Grid.Row ="1" Grid.Column="1" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="9" Content="9" Grid.Row ="1" Grid.Column="2" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="*" Content="*" Grid.Row ="1" Grid.Column="3" />
+
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="4" Content="4" Grid.Row ="2" Grid.Column="0" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="5" Content="5" Grid.Row ="2" Grid.Column="1" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="6" Content="6" Grid.Row ="2" Grid.Column="2" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="-" Content="-" Grid.Row ="2" Grid.Column="3"/>
+
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="1" Content="1" Grid.Row ="3" Grid.Column="0" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="2" Content="2" Grid.Row ="3" Grid.Column="1" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="3" Content="3" Grid.Row ="3" Grid.Column="2" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="+" Content="+" Grid.Row ="3" Grid.Column="3"/>
+
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="0" Content="0" Grid.Row ="4" Grid.Column="0" Style="{StaticResource NumberButton}"/>
+            <Button Command ="{Binding ButtonClicked}" CommandParameter="," Content="," Grid.Row ="4" Grid.Column="1"/>
+            <Button Command ="{Binding ButtonRemove}" Content="C" Grid.Row ="4" Grid.Column="2"/>
+            <Button Command ="{Binding ButtonCalculation}" CommandParameter="{Binding InputTxt}" Content="=" Grid.Row ="4" Grid.Column="3"/>
+        </Grid>
+    </Grid>
+</Window>
